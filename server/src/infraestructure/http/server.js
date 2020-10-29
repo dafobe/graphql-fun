@@ -3,6 +3,7 @@ const express = require('express');
 const expressRouter = express.Router();
 const graphqlHTTP = require('express-graphql');
 const helloRoutesConfig = require('../../interfaces/routes/hello');
+const graphQLSchema = require('./schema');
 const PORT_DEFAULT = 4000;
 
 
@@ -21,8 +22,14 @@ const createServer = async (PORT = PORT_DEFAULT) => {
   return new Promise((resolve, reject) => {
     const app = express();
 
+
     const helloRoutes = routesGenerator(expressRouter, helloRoutesConfig.routes);
     app.use(helloRoutesConfig.mainPath, helloRoutes);
+
+    app.use('/graphql', graphqlHTTP({
+        schema: graphQLSchema,
+        graphiql: true
+    }));
 
     app.listen(PORT)
       .once('listening', resolve)

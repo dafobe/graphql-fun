@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    environment:
+      - API_PORT=4000
+      - DEBUG_PORT=9222
+    command: npm run ${NPM_RUN_COMMAND:-start}
+    ports:
+      - 4000:4000
+      - 9222:9222
+    volumes:
+      - .:/usr/src/app:cached
+    # depends_on:
+    #   - database
+  # database:
+  #   image: mongo:3.6.18-xenial
+  #   expose:
+  #     - 27017
+  #   volumes:
+  #     - mongodata:/data/db
+#   mongodata:

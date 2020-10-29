@@ -1,0 +1,29 @@
+{
+  "name": "graphql-fun-server",
+  "version": "0.0.1",
+  "description": "learning graphQL",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node index.js",
+    "start": "nodemon index.js",
+    "debug": "nodemon --inspect=0.0.0.0:9222 index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dafobe/graphql-fun.git"
+  },
+  "author": "David Fonollosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dafobe/graphql-fun/issues"
+  },
+  "homepage": "https://github.com/dafobe/graphql-fun#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

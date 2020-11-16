@@ -1,11 +1,15 @@
-import error from '../../shared/errors/methodNotImplemented';
+import errorNoImplemented from '../../shared/errors/methodNoImplemented';
 
 export default class GameRepository {
     get() {
-        error('get');
+        errorNoImplemented('[GameRepository#get]');
     }
 
     getById() {
-        error('getById');
+        errorNoImplemented('[GameRepository#getById]');
+    }
+
+    getByType() {
+        errorNoImplemented('[GameRepository#getByType]');
     }
 }

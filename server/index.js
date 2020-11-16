@@ -1,4 +1,4 @@
-const createServer = require('./src/infraestructure/http/server');
+const createServer = require('./src/infraestructure/http/expressServer');
 const {API_PORT} = process.env;
 
 const init = async () => {

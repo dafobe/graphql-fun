@@ -1,14 +1,16 @@
 version: '3.8'
 services:
   app:
-    build: .
+    # build: .
+    image: node:14.8.0
+    working_dir: /usr/src/app
     environment:
-      - API_PORT=4000
-      - DEBUG_PORT=9222
-    command: npm run ${NPM_RUN_COMMAND:-start}
+      - API_PORT=4004
+      - DEBUG_PORT=9449
+    # command: npm run ${NPM_RUN_COMMAND:-start}
     ports:
-      - 4000:4000
-      - 9222:9222
+      - 4004:4004
+      - 9449:9449
     volumes:
       - .:/usr/src/app:cached
     # depends_on:

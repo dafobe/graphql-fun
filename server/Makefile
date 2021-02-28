@@ -15,7 +15,7 @@ help: Makefile
 
 ## up: Run the necessary services to run web without xdebug
 up:
-	docker-compose -p graphqlfun -f docker-compose.yml up -d
+	docker-compose -p graphqlfun run --service-ports app npm run serve 
 
 ## debug: Run the necessary services to run web with xdebug
 debug:

@@ -1,4 +1,4 @@
-import errorNoImplemented from '../../shared/errors/methodNoImplemented';
+import errorNoImplemented from '../../../shared/errors/methodNoImplemented';
 
 export default class GameRepository {
     get() {

@@ -1,4 +1,5 @@
 const graphql = require('graphql');
+const game = require('./game');
 
 const {
     GraphQLObjectType,
@@ -15,27 +16,23 @@ const GAMES_LIST = [
     {id: '2', name: 'Gloomhaven'}
 ];
 
-const GameType = new GraphQLObjectType({
-    name: 'Game',
-    fields: () => {
-        return {
-            id: { type: GraphQLID },
-            name: { type: GraphQLString },
-        }
-    }
-});
-
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
         game: {
-            type: GameType,
+            type: game,
             args: {
                 id: { type: GraphQLID }
             },
             resolve(parent, args){
                 const {id} = args;
                 return GAMES_LIST[id]
+            }
+        },
+        games: {
+            type: new GraphQLList(game),
+            resolve(){
+                return GAMES_LIST
             }
         }
     }

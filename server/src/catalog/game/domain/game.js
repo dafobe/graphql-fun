@@ -1,6 +1,6 @@
-import Entity from ('../../shared/Entity');
+const Entity = require('../../shared/Entity')
 
-export default class Game extends Entity{
+class Game extends Entity{
     constructor({type, name, category, mechanisms, family}) {
         this.name = name;
         this.type = type;
@@ -11,8 +11,11 @@ export default class Game extends Entity{
 
     toJson() {
         return {
+            'id': this._id,
             'type': this.type, 
             'name': this.name
         }
     }
 }
+
+module.exports = Game;

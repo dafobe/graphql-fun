@@ -1,9 +1,9 @@
 
-const express = require('express');
+import express from 'express';
 const expressRouter = express.Router();
-const healthcheckConfig = require('../../interfaces/routes/healthcheck');
-const helloRoutesConfig = require('../../interfaces/routes/hello');
-const graphqlConfig = require('../../interfaces/routes/graphql');
+import {routeConfig as healthcheckConfig} from '../../interfaces/routes/healthcheck.js';
+import {routeConfig as helloRoutesConfig} from '../../interfaces/routes/hello.js';
+import {routeConfig as graphqlConfig} from '../../interfaces/routes/graphql.js';
 const PORT_DEFAULT = 4000;
 
 
@@ -18,14 +18,14 @@ const routesGenerator = (router, routesConfig = []) => {
   return router;
 }
 
-const createServer = async ({PORT = PORT_DEFAULT, HOSTNAME = '0.0.0.0'}) => {
+export const createServer = async ({PORT = PORT_DEFAULT, HOSTNAME = '0.0.0.0'}) => {
   return new Promise((resolve, reject) => {
     const app = express();
 
     const helloRoutes = routesGenerator(expressRouter, helloRoutesConfig.routes);
 
     app.use(healthcheckConfig.mainPath, healthcheckConfig.route.handler);
-    
+
     app.use(helloRoutesConfig.mainPath, helloRoutes);
 
     app.use(graphqlConfig.mainPath, graphqlConfig.route.handler);
@@ -36,5 +36,3 @@ const createServer = async ({PORT = PORT_DEFAULT, HOSTNAME = '0.0.0.0'}) => {
 
   })
 };
-
-module.exports = createServer;

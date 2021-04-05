@@ -1,6 +1,6 @@
 // Require UseCases
 
-const helloController = {
+export const helloController = {
     sayHello(req, res, next) {
         return res.json({message: 'Hello World'});
     },
@@ -11,4 +11,4 @@ const helloController = {
     }
 };
 
-module.exports = helloController;
+// module.exports = helloController;

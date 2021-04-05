@@ -1,4 +1,4 @@
-const routeConfig = {
+export const routeConfig = {
   name: 'hello',
   version: '0.0.1',
   mainPath: '/healthcheck',
@@ -8,5 +8,3 @@ const routeConfig = {
     handler: (req, res) => res.json({message: 'is alive'}),
   }
 };
-
-module.exports = routeConfig;

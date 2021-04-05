@@ -1,8 +1,8 @@
-const graphqlHTTP = require('express-graphql');
-const graphQLSchema = require('../schemas/index');
+import graphqlHTTP from 'express-graphql';
+import graphQLSchema from '../schemas/index.js'
 
 
-const routeConfig = {
+export const routeConfig = {
   name: 'graphql',
   version: '0.0.1',
   mainPath: '/graphql',
@@ -15,5 +15,3 @@ const routeConfig = {
         }),
     }
 };
-
-module.exports = routeConfig;

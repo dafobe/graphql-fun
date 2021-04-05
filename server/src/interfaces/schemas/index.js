@@ -1,40 +1,16 @@
-const graphql = require('graphql');
-const game = require('./game');
+import graphql from 'graphql';
+import {gameList, game} from './game.js';
 
 const {
     GraphQLObjectType,
-    GraphQLString,
-    GraphQLSchema,
-    GraphQLID,
-    GraphQLInt,
-    GraphQLList,
-    GraphQLNonNull
+    GraphQLSchema
 } = graphql;
-
-const GAMES_LIST = [
-    {id: '1', name: 'Catan'},
-    {id: '2', name: 'Gloomhaven'}
-];
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
-        game: {
-            type: game,
-            args: {
-                id: { type: GraphQLID }
-            },
-            resolve(parent, args){
-                const {id} = args;
-                return GAMES_LIST[id]
-            }
-        },
-        games: {
-            type: new GraphQLList(game),
-            resolve(){
-                return GAMES_LIST
-            }
-        }
+        game,
+        games: gameList
     }
 });
 
@@ -42,4 +18,4 @@ const graphQLSchema = new GraphQLSchema({
     query: RootQuery
 });
 
-module.exports = graphQLSchema;
+export default graphQLSchema;

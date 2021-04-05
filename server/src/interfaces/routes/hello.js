@@ -1,8 +1,8 @@
 'use strict';
 
-const helloController = require('../controllers/helloController');
+import {helloController} from '../controllers/helloController.js';
 
-const routeConfig = {
+export const routeConfig = {
   name: 'hello',
   version: '0.0.1',
   mainPath: '/hello',
@@ -19,5 +19,3 @@ const routeConfig = {
     }
   ]
 };
-
-module.exports = routeConfig;

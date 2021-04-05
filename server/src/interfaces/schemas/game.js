@@ -1,12 +1,18 @@
-const graphql = require('graphql');
+import graphql from 'graphql';
 
 const {
     GraphQLObjectType,
     GraphQLString,
+    GraphQLList,
     GraphQLID
 } = graphql;
 
-module.exports = new GraphQLObjectType({
+const GAMES_LIST = [
+    {id: '1', name: 'Catan'},
+    {id: '2', name: 'Gloomhaven'}
+];
+
+export const gameType = new GraphQLObjectType({
     name: 'Game',
     fields: () => {
         return {
@@ -19,3 +25,21 @@ module.exports = new GraphQLObjectType({
         }
     }
 });
+
+export const game = {
+    type: gameType,
+    args: {
+        id: { type: GraphQLID }
+    },
+    resolve(parent, args){
+        const {id} = args;
+        return GAMES_LIST[id]
+    }
+}
+
+export const gameList = {
+    type: new GraphQLList(gameType),
+    resolve(){
+        return GAMES_LIST
+    }
+}

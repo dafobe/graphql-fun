@@ -1,6 +1,6 @@
 import {createServer} from './src/infrastructure/http/expressServer.js';
 
-const {API_PORT, API_HOSTNAME} = process.env;
+const {API_PORT, API_HOSTNAME = '0.0.0.0'} = process.env;
 
 const init = async () => {
     try {

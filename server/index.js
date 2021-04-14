@@ -1,4 +1,5 @@
-const createServer = require('./src/infrastructure/http/expressServer');
+import {createServer} from './src/infrastructure/http/expressServer.js';
+
 const {API_PORT, API_HOSTNAME} = process.env;
 
 const init = async () => {

@@ -1,4 +1,7 @@
 import graphql from 'graphql';
+import {factory as workflowFactory} from '../../catalog/game/application/workflowFactory.js';
+
+let getByIdUseCaseFactory = workflowFactory('getById');
 
 const {
     GraphQLObjectType,
@@ -33,7 +36,9 @@ export const game = {
     },
     resolve(parent, args){
         const {id} = args;
-        return GAMES_LIST[id]
+        const useCase = getByIdUseCaseFactory(id)
+
+        return useCase.execute();
     }
 }
 

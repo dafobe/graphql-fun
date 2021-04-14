@@ -1,25 +1,23 @@
-import GameRepository from '../domain/gameRepository';
-import Game from '../domain/game';
+import gameFactory from '../domain/game.js';
 
-const gameFactory = ({type, name}) => new Game({type, name});
 const games = [
-    gameFactory('dungeon-crawler', 'Gloomhaven'),
-    gameFactory('euro', 'Terraforming Mars'),
-    gameFactory('filler', 'Optimus')
+    gameFactory({type: 'dungeon-crawler', name: 'Gloomhaven'}),
+    gameFactory({type: 'euro', name: 'Terraforming Mars'}),
+    gameFactory({type: 'filler', name: 'Optimus'})
 ]
 
 const getGameBy = (property) => (value) => games.filter(game => game[property].toLowerCase() === value);
 const getByName = getGameBy('name');
 const getByType = getGameBy('type');
 
-export default class InMemoryGameRepository extends GameRepository {
+export default {
     get(id) {
-        games.get(id)
-    }
+        return Promise.resolve(games[id])
+    },
 
     getByName(name) {
         return getByName(name);
-    }
+    },
 
     getByType(type) {
         return getByType(type);

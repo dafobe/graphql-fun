@@ -20,7 +20,9 @@ export const gameType = new GraphQLObjectType({
     fields: () => {
         return {
             id: { type: GraphQLID },
+            bggId: { type: GraphQLID },
             name: { type: GraphQLString },
+            description: { type: GraphQLString },
             type: { type: GraphQLString },
             category: { type: GraphQLString },
             mehanisms: { type: GraphQLString },

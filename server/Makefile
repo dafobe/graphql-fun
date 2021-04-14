@@ -13,13 +13,16 @@ all: help
 help: Makefile
 	@sed -n 's/^##//p' $<
 
+setup:
+	docker-compose -p graphqlfun run app npm i
+
 ## up: Run the necessary services to run web without xdebug
 up:
-	docker-compose -p graphqlfun run --service-ports app npm run serve 
+	API_PORT=4004 docker-compose -p graphqlfun run --service-ports app npm run serve 
 
 ## debug: Run the necessary services to run web with xdebug
 debug:
-	export NPM_RUN_COMMAND=debug; docker-compose -p graphqlfun up -d
+	API_PORT=4004 API_HOSTNAME="0.0.0.0" DEBUG_PORT=9223 docker-compose -p graphqlfun run --service-ports app npm run debug --debugPort=9223
 
 ## pull: Download new docker images
 pull:
